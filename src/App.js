@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Button from './components/Button';
 
 function App() {
+  const initialValue = {
+    display: 0,
+  };
+  const [count, setCount] = useState(initialValue.display);
+
+  const incrementCount = (label) => {
+    setCount(count + label);
+  };
+
+  const resetValue = () => {
+    setCount(initialValue.display);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="Display">{count}</div>
+      <Button label={1} onClickFunction={incrementCount} />
+      <Button label={10} onClickFunction={incrementCount} />
+      <Button label={100} onClickFunction={incrementCount} />
+      <Button label={1000} onClickFunction={incrementCount} />
+      <div className="Reset">
+        <Button label={'Clear'} onClickFunction={resetValue} />
+      </div>
     </div>
   );
 }
